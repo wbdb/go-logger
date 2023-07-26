@@ -65,10 +65,6 @@ import (
 )
 
 func main() {
-    // Initialize the logger
-    logger.Write = &logger.conditionalLogger{
-        consoleLogger: log.New(os.Stdout, "", log.LstdFlags),
-    }
 
     // Some regular log messages
     logger.Write.Log("Starting application...")
@@ -76,6 +72,9 @@ func main() {
 
     // Simulate an error
     logger.Write.Error("Something went wrong!")
+
+    //Errorf
+    logger.Write.Errorf("Error read files %s: %v\n", txtPath, err)
 
     // Error messages and subsequent logs will be written to the log file
     logger.Write.Log("Continuing after the error.")
